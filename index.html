@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Alta Costura Maria Lihuen. Diseños de novias, 15 años y eventos especiales a medida en Morón, Buenos Aires. Calidad premium y exclusividad.">
+    <title>Maria Lihuen | Alta Costura & Diseño Exclusivo</title>
+    
+    <!-- Fuentes Google: Playfair Display (Elegancia) + Montserrat (Modernidad) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    
+    <!-- Iconos: FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ml-gold': '#B08D79',     /* Tono Bronce/Nude más apagado y elegante */
+                        'ml-gold-light': '#F2E8DF', /* Champagne muy pálido */
+                        'ml-dark': '#2C2422',     /* Marrón Casi Negro (Charcoal) */
+                        'ml-cream': '#FDFBF9',    /* Blanco Hueso */
+                        'ml-gray': '#A09B98'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        'ultra': '0.35em',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- ESTILOS PREMIUM --- */
+        :root {
+            --transition-slow: 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-med: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            background-color: #FDFBF9;
+            color: #2C2422;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Textura de grano sutil para efecto papel */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.6;
+        }
+
+        /* Tipografía Editorial */
+        .font-italic { font-style: italic; }
+        .text-editorial { font-family: 'Playfair Display', serif; }
+
+        /* Scrollbar Invisible pero funcional */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #B08D79; border-radius: 10px; }
+
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #FDFBF9; /* Fondo claro para elegancia */
+            z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+        .loader-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem; color: #B08D79;
+            animation: pulseFade 2s infinite;
+        }
+        @keyframes pulseFade { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+
+        /* --- NAVEGACIÓN SPA --- */
+        .page-section {
+            position: absolute; top: 0; left: 0; width: 100%; 
+            height: 100dvh; 
+            opacity: 0; visibility: hidden; pointer-events: none;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            padding-top: 90px; 
+            background-color: #FDFBF9;
+            z-index: 10;
+            overflow-y: auto; 
+            -webkit-overflow-scrolling: touch; 
+            overscroll-behavior: contain;
+            display: flex; flex-direction: column;
+        }
+        
+        #home.page-section { padding-top: 0; z-index: 10; overflow: hidden; display: block; }
+        
+        .page-section.active {
+            opacity: 1; visibility: visible; pointer-events: auto;
+            z-index: 20;
+        }
+
+        /* --- HAMBURGUESA FINA --- */
+        .hamburger {
+            cursor: pointer; width: 35px; height: 16px; 
+            position: relative; z-index: 60;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .hamburger span {
+            display: block; width: 100%; height: 1px; /* Ultra fino */
+            background-color: #2C2422;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); background-color: #2C2422; }
+        .hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(10px); }
+        .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background-color: #2C2422; }
+
+        /* --- ANIMACIONES --- */
+        .reveal-text {
+            opacity: 0; transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); /* Movimiento lento y fluido */
+        }
+        .active .reveal-text { opacity: 1; transform: translateY(0); }
+
+        /* --- IMAGENES --- */
+        .img-luxury {
+            filter: grayscale(30%) sepia(10%);
+            transition: filter 1s ease, transform 1.5s ease;
+        }
+        .group:hover .img-luxury {
+            filter: grayscale(0%) sepia(0%);
+            transform: scale(1.05);
+        }
+
+        /* --- HERO OVERLAY --- */
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(44,36,34,0.3) 0%, rgba(44,36,34,0.2) 50%, rgba(44,36,34,0.6) 100%);
+        }
+
+        /* --- BOTONES FLOTANTES --- */
+        .floating-btn {
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        /* --- FORMULARIO MINIMALISTA --- */
+        .form-input {
+            width: 100%; background: transparent;
+            border: none; border-bottom: 1px solid rgba(176, 141, 121, 0.3);
+            padding: 15px 0; color: #2C2422;
+            font-family: 'Playfair Display', serif; font-size: 1.1rem;
+            outline: none; transition: all 0.5s;
+        }
+        .form-input:focus { border-bottom: 1px solid #2C2422; padding-left: 10px; }
+        .form-input::placeholder { color: #A09B98; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+        /* --- MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 3.2rem !important; }
+            #home { height: 100dvh !important; min-height: 100dvh !important; }
+            #home .hero-overlay { background: linear-gradient(180deg, rgba(44,36,34,0.4) 0%, rgba(44,36,34,0.6) 100%); }
+            .hamburger span { background-color: #2C2422; }
+            .hamburger.active span { background-color: #FDFBF9; } /* Blanco en menú oscuro */
+        }
+
+        /* --- MINI CAROUSEL (NUEVO) --- */
+        .card-carousel-wrapper {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1); /* Deslizamiento suave premium */
+        }
+        .card-carousel-wrapper img {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-ml-gold selection:text-white">
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="loader-logo">ML</div>
+        <div class="text-[10px] uppercase tracking-ultra mt-4 text-ml-gold">Atelier</div>
+    </div>
+
+    <!-- BOTONES FLOTANTES -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
+        <!-- Scroll Top -->
+        <button id="scrollTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="floating-btn w-10 h-10 bg-white/80 text-ml-dark rounded-full flex items-center justify-center text-sm opacity-0 pointer-events-none transition-all duration-500 border border-ml-gold-light">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+
+        <!-- Instagram Flotante (Nuevo) -->
+        <a href="https://instagram.com/vestidos_maria.lihuen" target="_blank" class="floating-btn w-12 h-12 bg-gradient-to-tr from-[#B08D79] to-[#2C2422] text-white rounded-full flex items-center justify-center text-xl hover:scale-110 transition-transform duration-500 shadow-lg">
+            <i class="fab fa-instagram"></i>
+        </a>
+
+        <!-- WhatsApp Actualizado -->
+        <a href="https://wa.me/5491153209614" target="_blank" class="floating-btn w-12 h-12 bg-[#25D366]/90 text-white rounded-full flex items-center justify-center text-xl hover:scale-110 transition-transform duration-500">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- HEADER -->
+    <header class="fixed w-full top-0 z-40 bg-ml-cream/90 backdrop-blur-md border-b border-ml-dark/5 transition-all duration-500" id="main-header">
+        <div class="container mx-auto px-8 h-[90px] flex justify-between items-center">
+            <!-- Logo -->
+            <div class="font-serif text-3xl cursor-pointer text-ml-dark flex flex-col leading-none" onclick="navigateTo('home')">
+                <span>M<span class="italic text-ml-gold font-normal">L</span></span>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex space-x-12">
+                <button onclick="navigateTo('home')" class="nav-link text-[10px] uppercase tracking-ultra text-ml-dark/60 hover:text-ml-dark transition-colors duration-500 active-link" data-target="home">Inicio</button>
+                <button onclick="navigateTo('about')" class="nav-link text-[10px] uppercase tracking-ultra text-ml-dark/60 hover:text-ml-dark transition-colors duration-500" data-target="about">Atelier</button>
+                <button onclick="navigateTo('services')" class="nav-link text-[10px] uppercase tracking-ultra text-ml-dark/60 hover:text-ml-dark transition-colors duration-500" data-target="services">Colecciones</button>
+                <button onclick="navigateTo('testimonials')" class="nav-link text-[10px] uppercase tracking-ultra text-ml-dark/60 hover:text-ml-dark transition-colors duration-500" data-target="testimonials">Historias</button>
+                <button onclick="navigateTo('contact')" class="nav-link text-[10px] uppercase tracking-ultra text-ml-dark/60 hover:text-ml-dark transition-colors duration-500" data-target="contact">Cita</button>
+            </nav>
+
+            <!-- Hamburguesa -->
+            <div class="md:hidden hamburger" id="hamburger-btn" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-50 flex flex-col items-center justify-center space-y-8 md:hidden pointer-events-none opacity-0 transition-opacity duration-500 bg-[#2C2422]/95 backdrop-blur-xl">
+        <div class="flex flex-col items-center gap-8 opacity-0 translate-y-8 transition-all duration-700 delay-100" id="mobile-links">
+            <button onclick="navigateTo('home'); toggleMobileMenu()" class="text-white text-3xl font-serif italic hover:text-ml-gold transition-colors">Inicio</button>
+            <button onclick="navigateTo('about'); toggleMobileMenu()" class="text-white text-3xl font-serif italic hover:text-ml-gold transition-colors">Atelier</button>
+            <button onclick="navigateTo('services'); toggleMobileMenu()" class="text-white text-3xl font-serif italic hover:text-ml-gold transition-colors">Colecciones</button>
+            <button onclick="navigateTo('testimonials'); toggleMobileMenu()" class="text-white text-3xl font-serif italic hover:text-ml-gold transition-colors">Historias</button>
+            <button onclick="navigateTo('contact'); toggleMobileMenu()" class="text-white text-3xl font-serif italic hover:text-ml-gold transition-colors">Contacto</button>
+        </div>
+        <div class="absolute bottom-12 text-white/20 text-[10px] uppercase tracking-ultra">Maria Lihuen</div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="relative w-full h-full">
+
+        <!-- 1. HERO -->
+        <section id="home" class="page-section active w-full" style="background-image: url('https://images.unsplash.com/photo-1594552072231-36a3d1cbe348?q=80&w=1974&auto=format&fit=crop'); background-position: center; background-size: cover;">
+            <div class="absolute inset-0 hero-overlay z-0"></div>
+            
+            <div class="relative z-10 w-full h-full flex flex-col justify-center items-center text-center px-6">
+                <span class="block text-white/80 text-[10px] md:text-xs uppercase tracking-ultra mb-6 reveal-text border-b border-white/20 pb-2" style="transition-delay: 0.1s;">Alta Costura</span>
+                
+                <h1 class="font-serif text-5xl md:text-8xl lg:text-9xl mb-6 reveal-text text-white leading-none font-light" style="transition-delay: 0.3s;">
+                    Maria <span class="italic font-normal text-ml-gold-light">Lihuen</span>
+                </h1>
+                
+                <p class="font-sans font-light text-sm md:text-lg mb-12 max-w-lg mx-auto text-white/80 reveal-text leading-loose tracking-wide" style="transition-delay: 0.5s;">
+                    Diseño y amor unidos en un solo vestido.<br>Piezas únicas hechas a mano.
+                </p>
+                
+                <div class="reveal-text" style="transition-delay: 0.7s;">
+                    <button onclick="navigateTo('services')" class="group relative px-8 py-3 overflow-hidden bg-transparent border border-white/30 text-white transition-all duration-500 hover:border-white">
+                        <span class="absolute top-0 left-0 w-full h-full bg-white/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+                        <span class="relative text-[10px] uppercase tracking-ultra">Ver Colección</span>
+                    </button>
+                </div>
+
+                <!-- CAMBIO: Indicador de Scroll más elegante -->
+                <div class="absolute bottom-0 w-full flex flex-col items-center pb-8">
+                    <div class="cursor-pointer flex flex-col items-center gap-3 group" onclick="navigateTo('about')">
+                        <span class="text-[9px] uppercase tracking-ultra text-white/40 group-hover:text-white transition-colors duration-500">Descubre</span>
+                        <div class="w-[1px] h-12 bg-white/10 relative overflow-hidden">
+                             <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-white to-transparent animate-pulse"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SOBRE MÍ (ATELIER) -->
+        <section id="about" class="page-section bg-ml-cream">
+            <div class="container mx-auto px-8 py-12 md:py-24 flex-grow flex items-center">
+                <div class="flex flex-col md:flex-row items-center gap-16 md:gap-24 w-full">
+                    
+                    <!-- Imagen con Marco Editorial -->
+                    <div class="w-full md:w-1/2 reveal-text relative order-2 md:order-1 pl-4 md:pl-0">
+                        <div class="hidden md:block absolute -top-6 -left-6 w-full h-full border-[0.5px] border-ml-dark/20 z-0"></div>
+                        <div class="relative overflow-hidden group">
+                            <img src="https://images.unsplash.com/photo-1585421514738-01798e348bb2?q=80&w=2070&auto=format&fit=crop" class="img-luxury relative z-10 w-full h-[400px] md:h-[600px] object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Texto Editorial -->
+                    <div class="w-full md:w-1/2 text-left reveal-text order-1 md:order-2" style="transition-delay: 0.2s;">
+                        <span class="text-ml-gold text-[10px] uppercase tracking-ultra font-semibold block mb-4">La Diseñadora</span>
+                        <h2 class="font-serif text-4xl md:text-6xl text-ml-dark font-light leading-tight mb-8">
+                            Pasión por <br><span class="italic text-ml-gold">los detalles</span>
+                        </h2>
+                        
+                        <div class="space-y-6 text-ml-dark/70 font-light text-sm md:text-base leading-loose tracking-wide text-justify">
+                            <p>
+                                <span class="text-4xl float-left mr-2 mt-[-6px] font-serif text-ml-gold">S</span>oy Maria Lihuen, diseñadora de moda especializada en Alta Costura. Mi misión trasciende la confección; busco materializar sueños a través de texturas, hilos y formas orgánicas.
+                            </p>
+                            <p>
+                                Entiendo que tu vestido es una extensión de tu esencia. Cada diseño es confeccionado a medida y hecho 100% a mano en nuestro atelier de Morón, cuidando la pureza de cada puntada.
+                            </p>
+                        </div>
+                        
+                        <div class="mt-12 flex items-center gap-4">
+                            <button onclick="navigateTo('contact')" class="text-[10px] uppercase tracking-ultra border-b border-ml-dark pb-1 hover:text-ml-gold hover:border-ml-gold transition-colors duration-300">
+                                Contactar al Atelier
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="w-full border-t border-ml-dark/5 py-8 mt-auto">
+                <div class="container mx-auto px-8 flex justify-between items-center text-[10px] uppercase tracking-ultra text-ml-dark/40">
+                    <div>© 2024 Maria Lihuen</div>
+                    <div class="flex gap-4 text-base">
+                        <a href="https://instagram.com/vestidos_maria.lihuen" target="_blank" class="hover:text-ml-gold"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </section>
+
+        <!-- 3. SERVICIOS (COLECCIONES) -->
+        <section id="services" class="page-section bg-white">
+            <div class="container mx-auto px-8 py-12 md:py-24 flex-grow">
+                <div class="text-center mb-16 reveal-text">
+                    <span class="text-ml-gold text-[10px] uppercase tracking-ultra block mb-4">Nuestras Líneas</span>
+                    <h2 class="font-serif text-4xl md:text-5xl text-ml-dark italic font-light">Creaciones</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+                    <!-- Card Novias (Carrusel) -->
+                    <div class="group cursor-pointer reveal-text" onclick="window.open('https://wa.link/1abum1', '_blank')" style="transition-delay: 0.1s;">
+                        <div class="overflow-hidden relative h-[450px] mb-4">
+                            <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors z-10 duration-500 pointer-events-none"></div>
+                            
+                            <!-- Carrusel Wrapper -->
+                            <div class="card-carousel-wrapper" id="carousel-novias">
+                                <img src="https://images.unsplash.com/photo-1596451190630-186aff535bf2?q=80&w=1974&auto=format&fit=crop" class="img-luxury">
+                                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1920&auto=format&fit=crop" class="img-luxury">
+                                <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1974&auto=format&fit=crop" class="img-luxury">
+                            </div>
+
+                        </div>
+                        <div class="text-center">
+                            <h3 class="font-serif text-2xl italic text-ml-dark group-hover:text-ml-gold transition-colors">Novias</h3>
+                            <p class="text-[9px] uppercase tracking-ultra text-ml-gray mt-2">Románticas & Etéreas</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 15 Años (Carrusel) -->
+                    <div class="group cursor-pointer reveal-text" onclick="window.open('https://wa.link/1abum1', '_blank')" style="transition-delay: 0.2s;">
+                        <div class="overflow-hidden relative h-[450px] mb-4">
+                            <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors z-10 duration-500 pointer-events-none"></div>
+                            
+                            <!-- Carrusel Wrapper -->
+                            <div class="card-carousel-wrapper" id="carousel-15">
+                                <img src="https://images.unsplash.com/photo-1549416860-291ae5992857?q=80&w=2070&auto=format&fit=crop" class="img-luxury">
+                                <img src="https://images.unsplash.com/photo-1562624536-ad58593eb463?q=80&w=1974&auto=format&fit=crop" class="img-luxury">
+                                <img src="https://images.unsplash.com/photo-1516054575922-f0b8ee4becf1?q=80&w=1974&auto=format&fit=crop" class="img-luxury">
+                            </div>
+
+                        </div>
+                        <div class="text-center">
+                            <h3 class="font-serif text-2xl italic text-ml-dark group-hover:text-ml-gold transition-colors">15 Años</h3>
+                            <p class="text-[9px] uppercase tracking-ultra text-ml-gray mt-2">Princesas Reales</p>
+                        </div>
+                    </div>
+
+                    <!-- Card Alta Costura (Carrusel) -->
+                    <div class="group cursor-pointer reveal-text" onclick="window.open('https://wa.link/1abum1', '_blank')" style="transition-delay: 0.3s;">
+                        <div class="overflow-hidden relative h-[450px] mb-4">
+                            <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors z-10 duration-500 pointer-events-none"></div>
+                            
+                            <!-- Carrusel Wrapper -->
+                            <div class="card-carousel-wrapper" id="carousel-alta">
+                                <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=2024&auto=format&fit=crop" class="img-luxury">
+                                <img src="https://images.unsplash.com/photo-1512413914633-b5043f4041ea?q=80&w=1974&auto=format&fit=crop" class="img-luxury">
+                                <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=1974&auto=format&fit=crop" class="img-luxury">
+                            </div>
+
+                        </div>
+                        <div class="text-center">
+                            <h3 class="font-serif text-2xl italic text-ml-dark group-hover:text-ml-gold transition-colors">Alta Costura</h3>
+                            <p class="text-[9px] uppercase tracking-ultra text-ml-gray mt-2">A Medida</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-20 text-center reveal-text">
+                    <button onclick="navigateTo('contact')" class="text-[10px] uppercase tracking-ultra border border-ml-dark px-8 py-4 hover:bg-ml-dark hover:text-white transition-all duration-500">
+                        Iniciar Diseño
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Footer Repetido -->
+            <footer class="w-full border-t border-ml-dark/5 py-8 mt-auto">
+                <div class="container mx-auto px-8 flex justify-between items-center text-[10px] uppercase tracking-ultra text-ml-dark/40">
+                    <div>© 2024 Maria Lihuen</div>
+                    <div class="flex gap-4 text-base">
+                        <a href="https://instagram.com/vestidos_maria.lihuen" target="_blank" class="hover:text-ml-gold"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </section>
+
+        <!-- 4. TESTIMONIOS (MINIMAL) -->
+        <section id="testimonials" class="page-section bg-[#25201F] text-white flex flex-col">
+            <div class="container mx-auto px-8 py-16 flex-grow flex flex-col justify-center relative items-center">
+                
+                <div class="max-w-4xl mx-auto text-center reveal-text w-full relative">
+                    <!-- Comillas grandes como fondo -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[20rem] font-serif text-white opacity-[0.03] pointer-events-none leading-none">“</div>
+
+                    <span class="text-ml-gold text-[10px] uppercase tracking-ultra block mb-12">Clients Love</span>
+                    
+                    <div id="testimonial-display" class="testimonial-container relative z-10 min-h-[200px]">
+                        <!-- JS Injection -->
+                    </div>
+                    
+                    <div class="flex justify-center gap-4 mt-12" id="testimonial-dots"></div>
+
+                    <div class="mt-16">
+                        <a href="https://instagram.com/vestidos_maria.lihuen" target="_blank" class="text-[9px] uppercase tracking-ultra text-white/50 border-b border-white/20 pb-1 hover:text-white hover:border-white transition-all">
+                            Ver en Instagram
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="w-full border-t border-white/5 py-8 mt-auto">
+                <div class="container mx-auto px-8 flex justify-between items-center text-[10px] uppercase tracking-ultra text-white/30">
+                    <div>© 2024 Maria Lihuen</div>
+                    <div class="flex gap-4 text-base">
+                        <a href="https://instagram.com/vestidos_maria.lihuen" target="_blank" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </section>
+
+        <!-- 5. CONTACTO (FORMULARIO EDITORIAL) -->
+        <section id="contact" class="page-section bg-ml-cream flex flex-col justify-between">
+            <div class="container mx-auto px-8 py-12 md:py-24 flex-grow flex flex-col justify-center items-center">
+                
+                <div class="w-full max-w-2xl reveal-text text-center">
+                    <span class="text-ml-gold text-[10px] uppercase tracking-ultra block mb-4">Contacto</span>
+                    <h2 class="font-serif text-5xl md:text-6xl text-ml-dark mb-12 font-light italic">Hablemos</h2>
+
+                    <form onsubmit="sendToWhatsapp(event)" class="space-y-12 text-left">
+                        <div class="group">
+                            <input type="text" id="wa-name" required class="form-input" placeholder="Nombre completo">
+                        </div>
+                        
+                        <div class="group">
+                            <input type="text" id="wa-message" required class="form-input" placeholder="¿Qué estás soñando?">
+                        </div>
+
+                        <div class="text-center pt-8">
+                            <button type="submit" class="text-xs uppercase tracking-ultra bg-ml-dark text-white px-10 py-4 hover:bg-ml-gold transition-colors duration-500 shadow-xl">
+                                Enviar Solicitud
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="mt-16 text-center space-y-2">
+                        <p class="text-[10px] uppercase tracking-ultra text-ml-gray">Atelier</p>
+                        <p class="font-serif text-xl text-ml-dark italic">Aguero 1736, Morón, Bs As</p>
+                    </div>
+                </div>
+
+            </div>
+
+             <footer class="w-full border-t border-ml-dark/5 py-8 mt-auto">
+                <div class="container mx-auto px-8 flex justify-between items-center text-[10px] uppercase tracking-ultra text-ml-dark/40">
+                    <div>© 2024 Maria Lihuen</div>
+                    <div class="flex gap-4 text-base">
+                        <a href="https://instagram.com/vestidos_maria.lihuen" target="_blank" class="hover:text-ml-gold"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </section>
+
+    </main>
+
+    <script>
+        // --- DATA ---
+        const WHATSAPP_NUMBER = "5491153209614"; 
+
+        const testimonialsData = [
+            {
+                text: "No podía dejar que terminara este día tan hermoso. Fue su vestido soñado, se sintió como toda una princesa. Gracias a ustedes de corazón.",
+                author: "Mamá de Julieta",
+                role: "Vestido de Comunión"
+            },
+            {
+                text: "La atención de Maria es increíble. Entendió exactamente lo que quería para mi boda y el resultado superó mis expectativas.",
+                author: "Sofía M.",
+                role: "Novia"
+            },
+            {
+                text: "Hermosos diseños y calidad excelente. Me hicieron el vestido para los 15 de mi hija y quedó pintado.",
+                author: "Carla R.",
+                role: "15 Años"
+            }
+        ];
+
+        // --- PRELOADER ---
+        document.addEventListener("DOMContentLoaded", () => {
+            const preloader = document.getElementById('preloader');
+            
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+                triggerReveal('home');
+                startTestimonialCarousel();
+                initCardCarousels(); // Iniciar carruseles de tarjetas
+            }, 1200); // Un poco más largo para efecto premium
+
+            // Scroll Listener
+            window.addEventListener('scroll', () => {
+                const btn = document.getElementById('scrollTopBtn');
+                if (window.scrollY > 300) {
+                    btn.style.opacity = '1';
+                    btn.style.pointerEvents = 'auto';
+                } else {
+                    btn.style.opacity = '0';
+                    btn.style.pointerEvents = 'none';
+                }
+            });
+        });
+
+        // --- WHATSAPP FORM ---
+        function sendToWhatsapp(e) {
+            e.preventDefault();
+            const name = document.getElementById('wa-name').value;
+            const message = document.getElementById('wa-message').value;
+            
+            const text = `Hola Maria Lihuen, soy *${name}*. ${message}`;
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        }
+
+        // --- TESTIMONIALS ---
+        let currentTestimonialIndex = 0;
+        let carouselInterval;
+
+        function startTestimonialCarousel() {
+            renderDots();
+            showTestimonial(0);
+            carouselInterval = setInterval(nextTestimonial, 6000); 
+        }
+
+        function renderDots() {
+            const container = document.getElementById('testimonial-dots');
+            container.innerHTML = '';
+            testimonialsData.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = `w-1.5 h-1.5 rounded-full cursor-pointer transition-all duration-500 ${index === 0 ? 'bg-white scale-125' : 'bg-white/20'}`;
+                dot.onclick = () => manualTestimonial(index);
+                container.appendChild(dot);
+            });
+        }
+
+        function showTestimonial(index) {
+            const display = document.getElementById('testimonial-display');
+            const dots = document.getElementById('testimonial-dots').children;
+            const data = testimonialsData[index];
+
+            display.style.opacity = '0';
+
+            setTimeout(() => {
+                display.innerHTML = `
+                    <div class="px-4">
+                        <p class="font-serif text-2xl md:text-4xl leading-relaxed mb-8 text-white/90 italic font-light">
+                            "${data.text}"
+                        </p>
+                        <div class="flex flex-col items-center gap-2 mt-8">
+                            <h5 class="font-sans text-xs uppercase tracking-ultra text-ml-gold">${data.author}</h5>
+                            <span class="text-[9px] uppercase tracking-ultra text-white/40">${data.role}</span>
+                        </div>
+                    </div>
+                `;
+                
+                for(let i=0; i<dots.length; i++) {
+                    dots[i].className = `w-1.5 h-1.5 rounded-full cursor-pointer transition-all duration-500 ${i === index ? 'bg-white scale-125' : 'bg-white/20'}`;
+                }
+                display.style.opacity = '1';
+            }, 500);
+        }
+
+        function nextTestimonial() {
+            currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonialsData.length;
+            showTestimonial(currentTestimonialIndex);
+        }
+
+        function manualTestimonial(index) {
+            clearInterval(carouselInterval); 
+            currentTestimonialIndex = index;
+            showTestimonial(index);
+            carouselInterval = setInterval(nextTestimonial, 6000); 
+        }
+
+        // --- NAVIGATION SPA ---
+        function navigateTo(sectionId) {
+            const currentSection = document.querySelector('.page-section.active');
+            const targetSection = document.getElementById(sectionId);
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            if (currentSection.id === sectionId) return;
+            
+            window.scrollTo(0, 0);
+
+            navLinks.forEach(link => {
+                link.classList.remove('active-link');
+                link.classList.remove('text-ml-dark');
+                link.classList.add('text-ml-dark/60');
+                if(link.dataset.target === sectionId) {
+                    link.classList.add('active-link');
+                    link.classList.remove('text-ml-dark/60');
+                    link.classList.add('text-ml-dark');
+                }
+            });
+
+            currentSection.style.opacity = '0';
+            
+            setTimeout(() => {
+                currentSection.classList.remove('active');
+                currentSection.style.visibility = 'hidden';
+                targetSection.classList.add('active');
+                targetSection.style.visibility = 'visible';
+                window.scrollTo(0, 0); 
+
+                setTimeout(() => {
+                    targetSection.style.opacity = '1';
+                    triggerReveal(sectionId);
+                }, 50);
+            }, 800);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const btn = document.getElementById('hamburger-btn');
+            const links = document.getElementById('mobile-links');
+            
+            btn.classList.toggle('active');
+            
+            if (menu.classList.contains('mobile-menu-visible')) {
+                menu.classList.remove('mobile-menu-visible');
+                menu.classList.add('pointer-events-none', 'opacity-0');
+                links.classList.remove('opacity-100', 'translate-y-0');
+                links.classList.add('opacity-0', 'translate-y-8');
+            } else {
+                menu.classList.add('mobile-menu-visible');
+                menu.classList.remove('pointer-events-none', 'opacity-0');
+                setTimeout(() => {
+                    links.classList.remove('opacity-0', 'translate-y-8');
+                    links.classList.add('opacity-100', 'translate-y-0');
+                }, 100);
+            }
+        }
+
+        function triggerReveal(sectionId) {
+            // Re-trigger animaciones si necesario
+        }
+
+        // --- MINI CAROUSELS LOGIC ---
+        function initCardCarousels() {
+            const carousels = [
+                { id: 'carousel-novias', count: 3, current: 0 },
+                { id: 'carousel-15', count: 3, current: 0 },
+                { id: 'carousel-alta', count: 3, current: 0 }
+            ];
+
+            carousels.forEach((carousel, index) => {
+                // Intervalo desfasado para que no se muevan todos exactamente al mismo tiempo (efecto orgánico)
+                const delay = 3000 + (index * 500); 
+                
+                setInterval(() => {
+                    carousel.current = (carousel.current + 1) % carousel.count;
+                    const element = document.getElementById(carousel.id);
+                    if(element) {
+                        element.style.transform = `translateX(-${carousel.current * 100}%)`;
+                    }
+                }, delay); // Velocidad de cambio
+            });
+        }
+    </script>
+</body>
+</html>
