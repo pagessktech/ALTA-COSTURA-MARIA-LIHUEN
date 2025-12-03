@@ -23,10 +23,10 @@
             theme: {
                 extend: {
                     colors: {
-                        'ml-gold': '#C5B49A',     /* EL NUEVO BEIGE (Tono extraído de tu imagen) */
-                        'ml-gold-light': '#E5DDD0', /* Versión más clara para detalles */
-                        'ml-dark': '#3E3630',     /* Marrón Tierra Oscuro (Mejor contraste con beige) */
-                        'ml-cream': '#F5F2EB',    /* Fondo Lino Suave (Ya no es blanco, es beige muy claro) */
+                        'ml-gold': '#C5B49A',     /* EL NUEVO BEIGE */
+                        'ml-gold-light': '#E5DDD0', 
+                        'ml-dark': '#3E3630',     
+                        'ml-cream': '#F5F2EB',    
                         'ml-gray': '#9CA3AF'
                     },
                     fontFamily: {
@@ -51,12 +51,12 @@
         html, body {
             height: 100%;
             overflow: hidden;
-            background-color: #F5F2EB; /* Fondo actualizado al nuevo tono Lino */
-            color: #3E3630; /* Texto actualizado */
+            background-color: #F5F2EB;
+            color: #3E3630;
             -webkit-tap-highlight-color: transparent;
         }
         
-        /* Textura de grano sutil para efecto papel */
+        /* Textura de grano sutil */
         body::before {
             content: "";
             position: fixed;
@@ -71,7 +71,7 @@
         .font-italic { font-style: italic; }
         .text-editorial { font-family: 'Playfair Display', serif; }
 
-        /* Scrollbar Invisible pero funcional */
+        /* Scrollbar */
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #C5B49A; border-radius: 10px; }
@@ -79,14 +79,14 @@
         /* --- PRELOADER --- */
         #preloader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: #F5F2EB; /* Fondo actualizado */
+            background-color: #F5F2EB;
             z-index: 9999;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             transition: opacity 1s ease, visibility 1s ease;
         }
         .loader-logo {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem; color: #C5B49A; /* Logo en el nuevo beige */
+            font-size: 3rem; color: #C5B49A;
             animation: pulseFade 2s infinite;
         }
         @keyframes pulseFade { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
@@ -98,7 +98,7 @@
             opacity: 0; visibility: hidden; pointer-events: none;
             transition: opacity 0.8s ease, visibility 0.8s ease;
             padding-top: 90px; 
-            background-color: #F5F2EB; /* Fondo actualizado */
+            background-color: #F5F2EB;
             z-index: 10;
             overflow-y: auto; 
             -webkit-overflow-scrolling: touch; 
@@ -121,7 +121,7 @@
         }
         .hamburger span {
             display: block; width: 100%; height: 1px; 
-            background-color: #3E3630; /* Marrón tierra */
+            background-color: #3E3630;
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); background-color: #3E3630; }
@@ -137,7 +137,7 @@
 
         /* --- IMAGENES --- */
         .img-luxury {
-            filter: sepia(20%) contrast(90%); /* Ajustado para blending con beige */
+            filter: sepia(20%) contrast(90%);
             transition: filter 1s ease, transform 1.5s ease;
         }
         .group:hover .img-luxury {
@@ -147,7 +147,6 @@
 
         /* --- HERO OVERLAY --- */
         .hero-overlay {
-            /* Degradado más cálido/tierra */
             background: linear-gradient(180deg, rgba(62,54,48,0.3) 0%, rgba(62,54,48,0.2) 50%, rgba(62,54,48,0.6) 100%);
         }
 
@@ -160,7 +159,7 @@
         /* --- FORMULARIO MINIMALISTA --- */
         .form-input {
             width: 100%; background: transparent;
-            border: none; border-bottom: 1px solid rgba(197, 180, 154, 0.5); /* Borde beige */
+            border: none; border-bottom: 1px solid rgba(197, 180, 154, 0.5);
             padding: 15px 0; color: #3E3630;
             font-family: 'Playfair Display', serif; font-size: 1.1rem;
             outline: none; transition: all 0.5s;
@@ -174,7 +173,7 @@
             #home { height: 100dvh !important; min-height: 100dvh !important; }
             #home .hero-overlay { background: linear-gradient(180deg, rgba(62,54,48,0.4) 0%, rgba(62,54,48,0.6) 100%); }
             .hamburger span { background-color: #3E3630; }
-            .hamburger.active span { background-color: #F5F2EB; } /* Beige claro en menú oscuro */
+            .hamburger.active span { background-color: #F5F2EB; } 
         }
         
         /* --- MINI CAROUSEL --- */
@@ -192,7 +191,7 @@
             object-fit: cover;
         }
 
-        /* --- GALERÍA INMERSIVA (NUEVO ESTILO) --- */
+        /* --- GALERÍA INMERSIVA --- */
         #gallery-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: #F5F2EB; z-index: 100;
@@ -220,7 +219,7 @@
         .gallery-item.show { opacity: 1; transform: translateY(0); }
         .gallery-item img { width: 100%; display: block; border-radius: 2px; }
 
-        /* --- HERO SLIDER (NUEVO EFECTO KEN BURNS) --- */
+        /* --- HERO SLIDER --- */
         .hero-slider-container {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -238,7 +237,29 @@
         }
         .hero-slide.active {
             opacity: 1;
-            transform: scale(1.1); /* Efecto de zoom suave */
+            transform: scale(1.1);
+        }
+
+        /* --- REVIEW CAROUSEL --- */
+        .reviews-slider {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            height: 100%;
+        }
+        .review-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+        }
+        .review-slide img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
     </style>
 </head>
@@ -281,7 +302,7 @@
                 <button onclick="navigateTo('home')" class="nav-link text-[10px] uppercase tracking-ultra text-ml-dark/60 hover:text-ml-dark transition-colors duration-500 active-link" data-target="home">Inicio</button>
                 <button onclick="navigateTo('about')" class="nav-link text-[10px] uppercase tracking-ultra text-ml-dark/60 hover:text-ml-dark transition-colors duration-500" data-target="about">Atelier</button>
                 <button onclick="navigateTo('services')" class="nav-link text-[10px] uppercase tracking-ultra text-ml-dark/60 hover:text-ml-dark transition-colors duration-500" data-target="services">Colecciones</button>
-                <button onclick="navigateTo('testimonials')" class="nav-link text-[10px] uppercase tracking-ultra text-ml-dark/60 hover:text-ml-dark transition-colors duration-500" data-target="testimonials">Historias</button>
+                <button onclick="navigateTo('testimonials')" class="nav-link text-[10px] uppercase tracking-ultra text-ml-dark/60 hover:text-ml-dark transition-colors duration-500" data-target="testimonials">Reseñas</button>
                 <button onclick="navigateTo('contact')" class="nav-link text-[10px] uppercase tracking-ultra text-ml-dark/60 hover:text-ml-dark transition-colors duration-500" data-target="contact">Cita</button>
             </nav>
 
@@ -300,7 +321,7 @@
             <button onclick="navigateTo('home'); toggleMobileMenu()" class="text-white text-3xl font-serif italic hover:text-ml-gold transition-colors">Inicio</button>
             <button onclick="navigateTo('about'); toggleMobileMenu()" class="text-white text-3xl font-serif italic hover:text-ml-gold transition-colors">Atelier</button>
             <button onclick="navigateTo('services'); toggleMobileMenu()" class="text-white text-3xl font-serif italic hover:text-ml-gold transition-colors">Colecciones</button>
-            <button onclick="navigateTo('testimonials'); toggleMobileMenu()" class="text-white text-3xl font-serif italic hover:text-ml-gold transition-colors">Historias</button>
+            <button onclick="navigateTo('testimonials'); toggleMobileMenu()" class="text-white text-3xl font-serif italic hover:text-ml-gold transition-colors">Reseñas</button>
             <button onclick="navigateTo('contact'); toggleMobileMenu()" class="text-white text-3xl font-serif italic hover:text-ml-gold transition-colors">Contacto</button>
         </div>
         <div class="absolute bottom-12 text-white/20 text-[10px] uppercase tracking-ultra">Maria Lihuen</div>
@@ -310,25 +331,19 @@
     <main class="relative w-full h-full">
 
         <!-- 1. HERO (CON SLIDER DE FONDO) -->
-        <section id="home" class="page-section active w-full" style="background: #2C2422;">
+        <section id="home" class="page-section active w-full" style="background: #3E3630;">
             
             <!-- Slider de Imágenes de Fondo -->
             <div class="hero-slider-container" id="hero-bg-slider">
-                <!-- Imagen 1 -->
                 <div class="hero-slide active" style="background-image: url('https://res.cloudinary.com/dmosaczun/image/upload/v1764773395/1_dxwvd2.jpg');"></div>
-                <!-- Imagen 2 -->
                 <div class="hero-slide" style="background-image: url('https://res.cloudinary.com/dmosaczun/image/upload/v1764773392/2_ophgy3.jpg');"></div>
-                <!-- Imagen 3 -->
                 <div class="hero-slide" style="background-image: url('https://res.cloudinary.com/dmosaczun/image/upload/v1764773384/3_m0odat.jpg');"></div>
-                <!-- Imagen 4 -->
                 <div class="hero-slide" style="background-image: url('https://res.cloudinary.com/dmosaczun/image/upload/v1764773399/4_isuosq.jpg');"></div>
-                <!-- Imagen 5 -->
                 <div class="hero-slide" style="background-image: url('https://res.cloudinary.com/dmosaczun/image/upload/v1764773380/5_d6kt9x.jpg');"></div>
-                <!-- Imagen 6 -->
                 <div class="hero-slide" style="background-image: url('https://res.cloudinary.com/dmosaczun/image/upload/v1764773383/6_hsagxt.jpg');"></div>
             </div>
 
-            <!-- Overlay oscuro pero transparente para leer texto (z-index mayor que slider) -->
+            <!-- Overlay -->
             <div class="absolute inset-0 hero-overlay z-10"></div>
             
             <div class="relative z-20 w-full h-full flex flex-col justify-center items-center text-center px-6">
@@ -349,7 +364,6 @@
                     </button>
                 </div>
 
-                <!-- CAMBIO: Indicador de Scroll más elegante -->
                 <div class="absolute bottom-0 w-full flex flex-col items-center pb-8">
                     <div class="cursor-pointer flex flex-col items-center gap-3 group" onclick="navigateTo('about')">
                         <span class="text-[9px] uppercase tracking-ultra text-white/40 group-hover:text-white transition-colors duration-500">Descubre</span>
@@ -366,7 +380,6 @@
             <div class="container mx-auto px-8 py-12 md:py-24 flex-grow flex items-center">
                 <div class="flex flex-col md:flex-row items-center gap-16 md:gap-24 w-full">
                     
-                    <!-- Imagen con Marco Editorial -->
                     <div class="w-full md:w-1/2 reveal-text relative order-2 md:order-1 pl-4 md:pl-0">
                         <div class="hidden md:block absolute -top-6 -left-6 w-full h-full border-[0.5px] border-ml-dark/20 z-0"></div>
                         <div class="relative overflow-hidden group">
@@ -374,7 +387,6 @@
                         </div>
                     </div>
 
-                    <!-- Texto Editorial -->
                     <div class="w-full md:w-1/2 text-left reveal-text order-1 md:order-2" style="transition-delay: 0.2s;">
                         <span class="text-ml-gold text-[10px] uppercase tracking-ultra font-semibold block mb-4">La Diseñadora</span>
                         <h2 class="font-serif text-4xl md:text-6xl text-ml-dark font-light leading-tight mb-8">
@@ -417,7 +429,6 @@
                     <h2 class="font-serif text-4xl md:text-5xl text-ml-dark italic font-light">Creaciones</h2>
                 </div>
 
-                <!-- CAMBIO: Grid ajustado para 4 tarjetas (1 col móvil, 2 col tablet, 4 col desktop) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                     
                     <!-- Card Novias -->
@@ -483,18 +494,15 @@
                         </div>
                     </div>
 
-                    <!-- Card KIDS (NUEVA) -->
+                    <!-- Card KIDS -->
                     <div class="group cursor-pointer reveal-text" onclick="openGallery('kids')" style="transition-delay: 0.4s;">
                         <div class="overflow-hidden relative h-[450px] mb-4">
                             <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors z-10 duration-500 pointer-events-none"></div>
-                            
-                            <!-- Carrusel Wrapper Kids -->
                             <div class="card-carousel-wrapper" id="carousel-kids">
                                 <img src="https://res.cloudinary.com/dmosaczun/image/upload/v1764774775/1_fqpawa.jpg" class="img-luxury">
                                 <img src="https://res.cloudinary.com/dmosaczun/image/upload/v1764774775/2_hpa6b9.jpg" class="img-luxury">
                                 <img src="https://res.cloudinary.com/dmosaczun/image/upload/v1764774776/3_a1ukzz.jpg" class="img-luxury">
                             </div>
-
                             <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20">
                                 <span class="bg-ml-cream/90 backdrop-blur-sm text-ml-dark px-6 py-2 text-[10px] uppercase tracking-ultra border border-ml-dark/10 shadow-lg hover:bg-ml-dark hover:text-white transition-all duration-300 whitespace-nowrap">
                                     Ver Más Fotos
@@ -516,7 +524,6 @@
                 </div>
             </div>
             
-            <!-- Footer Repetido -->
             <footer class="w-full border-t border-ml-dark/5 py-8 mt-auto">
                 <div class="container mx-auto px-8 flex justify-between items-center text-[10px] uppercase tracking-ultra text-ml-dark/40">
                     <div>© 2024 Maria Lihuen</div>
@@ -527,25 +534,68 @@
             </footer>
         </section>
 
-        <!-- 4. TESTIMONIOS (MINIMAL) -->
+        <!-- 4. TESTIMONIOS (RESEÑAS DETALLADAS) -->
         <section id="testimonials" class="page-section bg-[#3E3630] text-white flex flex-col">
-            <div class="container mx-auto px-8 py-16 flex-grow flex flex-col justify-center relative items-center">
+            <div class="container mx-auto px-8 py-12 flex-grow flex flex-col justify-center relative items-center">
                 
-                <div class="max-w-4xl mx-auto text-center reveal-text w-full relative">
-                    <!-- Comillas grandes como fondo -->
-                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[20rem] font-serif text-white opacity-[0.03] pointer-events-none leading-none">“</div>
+                <div class="max-w-5xl mx-auto w-full relative z-10">
+                    <!-- Título -->
+                    <div class="text-center mb-12 reveal-text">
+                        <span class="text-ml-gold text-[10px] uppercase tracking-ultra block mb-4">Opiniones</span>
+                        <h2 class="font-serif text-4xl md:text-5xl italic font-light">Reseñas</h2>
+                    </div>
 
-                    <span class="text-ml-gold text-[10px] uppercase tracking-ultra block mb-12">Clients Love</span>
-                    
-                    <div id="testimonial-display" class="testimonial-container relative z-10 min-h-[200px]">
-                        <!-- JS Injection -->
+                    <!-- Panel de Estadísticas -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-16 border-b border-white/10 pb-12 reveal-text">
+                        <div class="md:col-span-4 flex flex-col justify-center items-center md:items-start text-center md:text-left border-r-0 md:border-r border-white/10 pr-0 md:pr-8">
+                            <div class="flex items-baseline gap-2 mb-2">
+                                <span class="text-6xl font-serif text-ml-gold">5.0</span>
+                                <span class="text-xl uppercase tracking-widest">Fantástico</span>
+                            </div>
+                            <div class="text-sm text-white/60 mb-1">Basado en <span class="text-white font-semibold">36 opiniones</span></div>
+                            <div class="text-xs text-ml-gold uppercase tracking-wider mb-6">El 99% de las parejas lo recomiendan</div>
+                            <div class="flex text-ml-gold text-xl gap-1">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-4 pl-0 md:pl-8">
+                            <div class="flex flex-col"><div class="flex justify-between text-[10px] uppercase tracking-ultra mb-1 text-white/80"><span>Calidad del servicio</span><span>5.0</span></div><div class="w-full bg-white/10 h-[2px]"><div class="bg-ml-gold h-full w-full"></div></div></div>
+                            <div class="flex flex-col"><div class="flex justify-between text-[10px] uppercase tracking-ultra mb-1 text-white/80"><span>Relación calidad/precio</span><span>5.0</span></div><div class="w-full bg-white/10 h-[2px]"><div class="bg-ml-gold h-full w-full"></div></div></div>
+                            <div class="flex flex-col"><div class="flex justify-between text-[10px] uppercase tracking-ultra mb-1 text-white/80"><span>Profesionalidad</span><span>5.0</span></div><div class="w-full bg-white/10 h-[2px]"><div class="bg-ml-gold h-full w-full"></div></div></div>
+                            <div class="flex flex-col"><div class="flex justify-between text-[10px] uppercase tracking-ultra mb-1 text-white/80"><span>Flexibilidad</span><span>5.0</span></div><div class="w-full bg-white/10 h-[2px]"><div class="bg-ml-gold h-full w-full"></div></div></div>
+                            <div class="flex flex-col sm:col-span-2 sm:w-1/2"><div class="flex justify-between text-[10px] uppercase tracking-ultra mb-1 text-white/80"><span>Tiempo de respuesta</span><span>5.0</span></div><div class="w-full bg-white/10 h-[2px]"><div class="bg-ml-gold h-full w-full"></div></div></div>
+                        </div>
                     </div>
                     
-                    <div class="flex justify-center gap-4 mt-12" id="testimonial-dots"></div>
+                    <!-- Carrusel de Imágenes de Reseñas -->
+                    <div class="relative w-full max-w-sm mx-auto h-[450px] mb-10">
+                        <div class="overflow-hidden h-full rounded-lg">
+                            <div class="reviews-slider" id="reviews-track">
+                                <div class="review-slide"><img src="https://res.cloudinary.com/dmosaczun/image/upload/v1764776100/1_ayrvk6.png" alt="Reseña 1"></div>
+                                <div class="review-slide"><img src="https://res.cloudinary.com/dmosaczun/image/upload/v1764776100/2_ltefvg.png" alt="Reseña 2"></div>
+                                <div class="review-slide"><img src="https://res.cloudinary.com/dmosaczun/image/upload/v1764776100/4_hym8eb.png" alt="Reseña 3"></div>
+                                <div class="review-slide"><img src="https://res.cloudinary.com/dmosaczun/image/upload/v1764776100/3_rc1xrj.png" alt="Reseña 4"></div>
+                                <div class="review-slide"><img src="https://res.cloudinary.com/dmosaczun/image/upload/v1764776101/5_zpcdzn.png" alt="Reseña 5"></div>
+                                <div class="review-slide"><img src="https://res.cloudinary.com/dmosaczun/image/upload/v1764776102/6_yupocy.png" alt="Reseña 6"></div>
+                                <div class="review-slide"><img src="https://res.cloudinary.com/dmosaczun/image/upload/v1764776152/7_vykkjw.png" alt="Reseña 7"></div>
+                                <div class="review-slide"><img src="https://res.cloudinary.com/dmosaczun/image/upload/v1764776154/10_eheqlr.png" alt="Reseña 8"></div>
+                                <div class="review-slide"><img src="https://res.cloudinary.com/dmosaczun/image/upload/v1764776157/9_hbi5n8.png" alt="Reseña 9"></div>
+                                <div class="review-slide"><img src="https://res.cloudinary.com/dmosaczun/image/upload/v1764776158/11_ywxja2.png" alt="Reseña 10"></div>
+                                <div class="review-slide"><img src="https://res.cloudinary.com/dmosaczun/image/upload/v1764776154/8_eqrcs0.png" alt="Reseña 11"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-center gap-2 mt-4" id="review-dots"></div>
+                    </div>
 
-                    <div class="mt-16">
-                        <a href="https://instagram.com/vestidos_maria.lihuen" target="_blank" class="text-[9px] uppercase tracking-ultra text-white/50 border-b border-white/20 pb-1 hover:text-white hover:border-white transition-all">
-                            Ver en Instagram
+                    <!-- Botones de Acción -->
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 reveal-text">
+                        <a href="https://www.casamientos.com.ar/casa-de-novias/maria-lihuen--e152671/opiniones" target="_blank" class="flex items-center justify-center gap-2 bg-white text-ml-dark px-6 py-3 text-[10px] uppercase tracking-ultra font-bold hover:bg-ml-gold hover:text-white transition-colors duration-300 shadow-lg">
+                            <i class="fas fa-heart text-red-500"></i> Ver más reseñas acá
+                        </a>
+                        <a href="https://www.google.com/maps/place/Maria+lihuen/@-34.6719124,-58.6094602,941m/data=!3m1!1e3!4m8!3m7!1s0x95bcc7cdba4d8edb:0xd60550e48b2c8b12!8m2!3d-34.6719124!4d-58.6094602!9m1!1b1!16s%2Fg%2F11j6c350vq?entry=ttu&g_ep=EgoyMDI1MTEzMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="flex items-center justify-center gap-2 border border-white/30 text-white px-6 py-3 text-[10px] uppercase tracking-ultra hover:bg-white hover:text-ml-dark transition-colors duration-300">
+                            <i class="fab fa-google"></i> Dejar reseña en Google
                         </a>
                     </div>
                 </div>
@@ -628,10 +678,8 @@
     </div>
 
     <script>
-        // --- DATA ---
         const WHATSAPP_NUMBER = "5491153209614"; 
 
-        // --- GALERÍA DATABASE (UNIFICADA) ---
         const galleryDatabase = {
             'novias': [
                 "https://res.cloudinary.com/dmosaczun/image/upload/v1764773980/31_qjcbny.jpg",
@@ -697,40 +745,25 @@
             ]
         };
 
-        const testimonialsData = [
-            {
-                text: "No podía dejar que terminara este día tan hermoso. Fue su vestido soñado, se sintió como toda una princesa. Gracias a ustedes de corazón.",
-                author: "Mamá de Julieta",
-                role: "Vestido de Comunión"
-            },
-            {
-                text: "La atención de Maria es increíble. Entendió exactamente lo que quería para mi boda y el resultado superó mis expectativas.",
-                author: "Sofía M.",
-                role: "Novia"
-            },
-            {
-                text: "Hermosos diseños y calidad excelente. Me hicieron el vestido para los 15 de mi hija y quedó pintado.",
-                author: "Carla R.",
-                role: "15 Años"
-            }
-        ];
-
-        // --- PRELOADER ---
+        // --- PRELOADER & INIT ---
         document.addEventListener("DOMContentLoaded", () => {
             const preloader = document.getElementById('preloader');
             
             setTimeout(() => {
-                preloader.style.opacity = '0';
-                preloader.style.visibility = 'hidden';
+                if(preloader) {
+                    preloader.style.opacity = '0';
+                    preloader.style.visibility = 'hidden';
+                }
                 triggerReveal('home');
-                startTestimonialCarousel();
                 initCardCarousels(); 
-                initHeroSlider(); // Iniciar slider del hero
+                initHeroSlider();
+                initReviewCarousel(); // Nuevo Carrusel de Reseñas
             }, 1200); 
 
-            // Scroll Listener
             window.addEventListener('scroll', () => {
                 const btn = document.getElementById('scrollTopBtn');
+                if(!btn) return; // Safety check
+                
                 if (window.scrollY > 300) {
                     btn.style.opacity = '1';
                     btn.style.pointerEvents = 'auto';
@@ -744,75 +777,55 @@
         // --- WHATSAPP FORM ---
         function sendToWhatsapp(e) {
             e.preventDefault();
-            const name = document.getElementById('wa-name').value;
-            const message = document.getElementById('wa-message').value;
+            const nameEl = document.getElementById('wa-name');
+            const msgEl = document.getElementById('wa-message');
             
+            if(!nameEl || !msgEl) return;
+
+            const name = nameEl.value;
+            const message = msgEl.value;
             const text = `Hola Maria Lihuen, soy *${name}*. ${message}`;
             const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
             window.open(url, '_blank');
         }
 
-        // --- TESTIMONIALS ---
-        let currentTestimonialIndex = 0;
-        let carouselInterval;
+        // --- REVIEW CAROUSEL LOGIC ---
+        function initReviewCarousel() {
+            const track = document.getElementById('reviews-track');
+            const dotsContainer = document.getElementById('review-dots');
+            
+            if(!track || !dotsContainer) return; // Safety check
 
-        function startTestimonialCarousel() {
-            renderDots();
-            showTestimonial(0);
-            carouselInterval = setInterval(nextTestimonial, 6000); 
-        }
+            const slides = track.children;
+            let currentIndex = 0;
+            const totalSlides = slides.length;
 
-        function renderDots() {
-            const container = document.getElementById('testimonial-dots');
-            if(!container) return; // Safety check
-            container.innerHTML = '';
-            testimonialsData.forEach((_, index) => {
+            // Crear dots
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < totalSlides; i++) {
                 const dot = document.createElement('div');
-                dot.className = `w-1.5 h-1.5 rounded-full cursor-pointer transition-all duration-500 ${index === 0 ? 'bg-white scale-125' : 'bg-white/20'}`;
-                dot.onclick = () => manualTestimonial(index);
-                container.appendChild(dot);
-            });
-        }
+                dot.className = `w-1.5 h-1.5 rounded-full cursor-pointer transition-all duration-300 ${i === 0 ? 'bg-ml-gold scale-125' : 'bg-white/20'}`;
+                dot.onclick = () => {
+                    currentIndex = i;
+                    updateCarousel();
+                };
+                dotsContainer.appendChild(dot);
+            }
 
-        function showTestimonial(index) {
-            const display = document.getElementById('testimonial-display');
-            const dots = document.getElementById('testimonial-dots')?.children;
-            const data = testimonialsData[index];
-
-            if(!display || !dots) return;
-
-            display.style.opacity = '0';
-
-            setTimeout(() => {
-                display.innerHTML = `
-                    <div class="px-4">
-                        <p class="font-serif text-2xl md:text-4xl leading-relaxed mb-8 text-white/90 italic font-light">
-                            "${data.text}"
-                        </p>
-                        <div class="flex flex-col items-center gap-2 mt-8">
-                            <h5 class="font-sans text-xs uppercase tracking-ultra text-ml-gold">${data.author}</h5>
-                            <span class="text-[9px] uppercase tracking-ultra text-white/40">${data.role}</span>
-                        </div>
-                    </div>
-                `;
+            function updateCarousel() {
+                if(!track) return;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
                 
-                for(let i=0; i<dots.length; i++) {
-                    dots[i].className = `w-1.5 h-1.5 rounded-full cursor-pointer transition-all duration-500 ${i === index ? 'bg-white scale-125' : 'bg-white/20'}`;
-                }
-                display.style.opacity = '1';
-            }, 500);
-        }
+                Array.from(dotsContainer.children).forEach((dot, idx) => {
+                    dot.className = `w-1.5 h-1.5 rounded-full cursor-pointer transition-all duration-300 ${idx === currentIndex ? 'bg-ml-gold scale-125' : 'bg-white/20'}`;
+                });
+            }
 
-        function nextTestimonial() {
-            currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonialsData.length;
-            showTestimonial(currentTestimonialIndex);
-        }
-
-        function manualTestimonial(index) {
-            clearInterval(carouselInterval); 
-            currentTestimonialIndex = index;
-            showTestimonial(index);
-            carouselInterval = setInterval(nextTestimonial, 6000); 
+            // Auto play
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateCarousel();
+            }, 4000);
         }
 
         // --- NAVIGATION SPA ---
@@ -821,11 +834,9 @@
             const targetSection = document.getElementById(sectionId);
             const navLinks = document.querySelectorAll('.nav-link');
 
-            if (currentSection.id === sectionId) return;
+            if (!targetSection || currentSection.id === sectionId) return;
             
-            // Si la galería está abierta, cerrarla al navegar
             closeGallery();
-            
             window.scrollTo(0, 0);
 
             navLinks.forEach(link => {
@@ -860,6 +871,8 @@
             const btn = document.getElementById('hamburger-btn');
             const links = document.getElementById('mobile-links');
             
+            if(!menu || !btn || !links) return;
+
             btn.classList.toggle('active');
             
             if (menu.classList.contains('mobile-menu-visible')) {
@@ -878,7 +891,7 @@
         }
 
         function triggerReveal(sectionId) {
-            // Re-trigger animaciones si necesario
+            // Re-trigger animations if needed
         }
 
         // --- MINI CAROUSELS LOGIC ---
@@ -905,13 +918,15 @@
         // --- HERO SLIDER LOGIC ---
         function initHeroSlider() {
             const slides = document.querySelectorAll('.hero-slide');
+            if(slides.length === 0) return;
+
             let currentSlide = 0;
             const slideInterval = 6000; 
 
             setInterval(() => {
-                slides[currentSlide].classList.remove('active');
+                if(slides[currentSlide]) slides[currentSlide].classList.remove('active');
                 currentSlide = (currentSlide + 1) % slides.length;
-                slides[currentSlide].classList.add('active');
+                if(slides[currentSlide]) slides[currentSlide].classList.add('active');
             }, slideInterval);
         }
 
@@ -921,6 +936,8 @@
             const grid = document.getElementById('gallery-grid');
             const title = document.getElementById('gallery-title');
             
+            if(!overlay || !grid || !title) return;
+
             if(category === 'novias') title.innerText = "Colección Novias";
             if(category === '15anios') title.innerText = "Colección 15 Años";
             if(category === 'eventos') title.innerText = "Eventos Especiales";
@@ -941,7 +958,8 @@
         }
 
         function closeGallery() {
-            document.getElementById('gallery-overlay').classList.remove('active');
+            const overlay = document.getElementById('gallery-overlay');
+            if(overlay) overlay.classList.remove('active');
         }
     </script>
 </body>
