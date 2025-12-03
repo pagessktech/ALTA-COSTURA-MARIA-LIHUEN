@@ -196,12 +196,14 @@
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: #F5F2EB; z-index: 100;
             transform: translateY(100%); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            overflow-y: auto; -webkit-overflow-scrolling: touch;
+            /* FIX: Quitamos scroll del overlay principal para manejarlo internamente */
+            overflow: hidden; 
         }
         #gallery-overlay.active { transform: translateY(0); }
         
         .close-gallery-btn {
-            position: fixed; top: 20px; right: 20px; z-index: 101;
+            position: absolute; /* Cambiado a absolute relativo al overlay */
+            top: 20px; right: 20px; z-index: 102; /* Z-index alto */
             width: 45px; height: 45px; background: rgba(62, 54, 48, 0.1);
             backdrop-filter: blur(10px); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
@@ -209,8 +211,49 @@
         }
         .close-gallery-btn:active { transform: scale(0.9); background: #3E3630; color: #fff; }
 
-        .gallery-grid { column-count: 1; column-gap: 15px; padding: 80px 20px 40px 20px; }
-        @media (min-width: 768px) { .gallery-grid { column-count: 3; padding: 100px 40px 60px 40px; } }
+        /* --- BOTÓN VOLVER MÓVIL (CORREGIDO) --- */
+        .mobile-back-btn {
+            display: none; 
+            position: absolute; /* Absolute funciona como Fixed dentro de un padre con Transform */
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 102; 
+            background-color: #3E3630; 
+            color: #F5F2EB;
+            padding: 12px 35px;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background 0.3s ease;
+        }
+        .mobile-back-btn:active {
+            transform: translateX(-50%) scale(0.95);
+        }
+
+        /* Nuevo contenedor para el scroll interno */
+        .gallery-scroll-area {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-top: 80px; /* Espacio para el header fijo */
+        }
+
+        .gallery-grid { column-count: 1; column-gap: 15px; padding: 20px 20px 120px 20px; } /* Padding bottom extra para el botón flotante */
+        @media (min-width: 768px) { 
+            .gallery-grid { column-count: 3; padding: 40px 40px 60px 40px; } 
+            .mobile-back-btn { display: none; } 
+        }
+        @media (max-width: 767px) {
+            .mobile-back-btn { display: flex; } 
+        }
         
         .gallery-item {
             break-inside: avoid; margin-bottom: 15px; opacity: 0;
@@ -660,28 +703,33 @@
                 </div>
             </footer>
         </section>
-
-    </main>
-
-    <!-- PANTALLA DE GALERÍA (OVERLAY NUEVO) -->
+    <!-- PANTALLA DE GALERÍA (ESTRUCTURA CORREGIDA) -->
     <div id="gallery-overlay">
+        <!-- ELEMENTOS FIJOS (NO SCROLLEAN) -->
         <div class="close-gallery-btn" onclick="closeGallery()">
             <i class="fas fa-times text-xl"></i>
         </div>
         
-        <!-- Header Galería -->
+        <button class="mobile-back-btn" onclick="closeGallery()">
+            <i class="fas fa-arrow-left"></i> Volver
+        </button>
+        
+        <!-- Header Fijo -->
         <div class="absolute top-0 left-0 w-full p-6 bg-ml-cream/95 backdrop-blur-sm z-50 border-b border-ml-dark/5 flex justify-center items-center">
             <div class="font-serif text-xl md:text-2xl text-ml-dark italic" id="gallery-title">Colección</div>
         </div>
 
-        <div class="gallery-grid" id="gallery-grid">
-            <!-- Las imágenes se inyectan aquí -->
-        </div>
-        
-        <div class="text-center pb-24">
-            <button onclick="window.open('https://wa.link/1abum1', '_blank')" class="bg-ml-dark text-white px-8 py-3 text-[10px] uppercase tracking-ultra hover:bg-ml-gold transition-colors shadow-lg">
-                Consultar por estos modelos
-            </button>
+        <!-- ÁREA DE SCROLL -->
+        <div class="gallery-scroll-area">
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Las imágenes se inyectan aquí -->
+            </div>
+            
+            <div class="text-center pb-24">
+                <button onclick="window.open('https://wa.link/1abum1', '_blank')" class="bg-ml-dark text-white px-8 py-3 text-[10px] uppercase tracking-ultra hover:bg-ml-gold transition-colors shadow-lg">
+                    Consultar por estos modelos
+                </button>
+            </div>
         </div>
     </div>
 
@@ -793,21 +841,35 @@
                 triggerReveal('home');
                 initCardCarousels(); 
                 initHeroSlider();
-                initReviewCarousel(); // Nuevo Carrusel de Reseñas
+                initReviewCarousel(); 
             }, 1200); 
 
-            window.addEventListener('scroll', () => {
-                const btn = document.getElementById('scrollTopBtn');
-                if(!btn) return; // Safety check
-                
-                if (window.scrollY > 300) {
-                    btn.style.opacity = '1';
-                    btn.style.pointerEvents = 'auto';
-                } else {
-                    btn.style.opacity = '0';
-                    btn.style.pointerEvents = 'none';
-                }
-            });
+            // FIX: Lógica de Scroll para botón "Subir" adaptada a contenedores individuales
+            const scrollBtn = document.getElementById('scrollTopBtn');
+            const sections = document.querySelectorAll('.page-section');
+
+            if(scrollBtn) {
+                // Cambiar el comportamiento del click para scrollear la sección activa
+                scrollBtn.onclick = () => {
+                    const activeSection = document.querySelector('.page-section.active');
+                    if(activeSection) {
+                        activeSection.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                };
+
+                // Escuchar el evento scroll en cada sección individualmente
+                sections.forEach(section => {
+                    section.addEventListener('scroll', () => {
+                        if (section.scrollTop > 300) {
+                            scrollBtn.style.opacity = '1';
+                            scrollBtn.style.pointerEvents = 'auto';
+                        } else {
+                            scrollBtn.style.opacity = '0';
+                            scrollBtn.style.pointerEvents = 'none';
+                        }
+                    });
+                });
+            }
         });
 
         // --- WHATSAPP FORM ---
